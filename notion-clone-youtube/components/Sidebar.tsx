@@ -1,13 +1,12 @@
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 
 // components
 import NewDocumentButton from "./NewDocumentButton";
@@ -15,7 +14,9 @@ import NewDocumentButton from "./NewDocumentButton";
 function Sidebar() {
   return (
     <div className="p-2 md:p-5 bg-gray-200 relative">
-      <NewDocumentButton />
+      <div className="hidden md:inline">
+        <NewDocumentButton />
+      </div>
     </div>
   )
 }
