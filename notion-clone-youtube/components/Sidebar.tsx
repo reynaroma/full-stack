@@ -1,4 +1,16 @@
-import NewDocumentButton from "./NewDocumentButton"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+// components
+import NewDocumentButton from "./NewDocumentButton";
 
 function Sidebar() {
   return (
