@@ -7,7 +7,10 @@ function Header() {
 
   return (
     <div>
-      Header
+      {user &&
+        <h1>{user?.firstName}
+          {`'s`} Space
+        </h1>}
     </div>
   )
 }
