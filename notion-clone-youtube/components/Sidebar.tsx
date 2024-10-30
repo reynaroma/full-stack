@@ -1,7 +1,9 @@
+import NewDocumentButton from "./NewDocumentButton"
+
 function Sidebar() {
   return (
-    <div className="">
-      Sidebar
+    <div className="p-2">
+      <NewDocumentButton />
     </div>
   )
 }
