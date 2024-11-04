@@ -2,16 +2,22 @@
 
 import { useTransition } from "react";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 function NewDocumentButton() {
 
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
   const handleCreateNewDocument = () => {
-    console.log("Create new document");
+    startTransition( async () => {
+      const { docId } = await createNewDocument();
+      router.push(`/doc/${docId}`);
+    });
   };
 
   return (
-    <Button onClick={handleCreateNewDocument}>
+    <Button onClick={handleCreateNewDocument} disabled={isPending}>
       New Document
     </Button>
   )
