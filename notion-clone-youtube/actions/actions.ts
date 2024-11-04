@@ -4,9 +4,13 @@ import { adminDb } from "@/firebase-admin";
 import { auth } from "@clerk/nextjs/server";
 
 export async function createNewDocument() {
-  auth().protect();
+  // auth().protect();
 
   const { sessionClaims } = await auth();
+
+  if (!sessionClaims) {
+    throw new Error("Unauthorized");
+  };
 
   const docCollectionRef = adminDb.collection("documents");
   const docRef = await docCollectionRef.add({
@@ -25,5 +29,5 @@ export async function createNewDocument() {
     roomId: docRef.id,
   });
 
-  return { docId: docRef.id };
+return { docId: docRef.id };
 };
