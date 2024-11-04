@@ -2,11 +2,13 @@
 
 import { Button } from "./ui/button";
 
-const handleCreateNewDocument = () => {
-  console.log("Create new document");
-}
-
 function NewDocumentButton() {
+
+  const [isPending, startTransition] = useTransition(); 
+  const handleCreateNewDocument = () => {
+    console.log("Create new document");
+  };
+
   return (
     <Button onClick={handleCreateNewDocument}>
       New Document
