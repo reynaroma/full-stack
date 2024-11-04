@@ -1,8 +1,14 @@
-import { Button } from "./ui/button"
+"use client";
+
+import { Button } from "./ui/button";
+
+const handleCreateNewDocument = () => {
+  console.log("Create new document");
+}
 
 function NewDocumentButton() {
   return (
-    <Button>
+    <Button onClick={handleCreateNewDocument}>
       New Document
     </Button>
   )
