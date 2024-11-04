@@ -7,13 +7,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-
+import { MenuIcon } from "lucide-react";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 // components
 import NewDocumentButton from "./NewDocumentButton";
-import { MenuIcon } from "lucide-react";
 
 function Sidebar() {
+
+  const [data, loading, error] = useCollection();
 
   const menuOptions = (
     <>
