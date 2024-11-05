@@ -13,8 +13,16 @@ import { useUser } from "@clerk/nextjs";
 
 // components
 import NewDocumentButton from "./NewDocumentButton";
-import { collectionGroup, query, where } from "firebase/firestore";
+import { collectionGroup, doc, query, where } from "firebase/firestore";
 import { db } from "@/firebase";
+import { useEffect } from "react";
+
+interface RoomDocument extends DocumentData {
+  createdAt: string;
+  role: "owner" | "editor";
+  roomId: string;
+  userId: string;
+}
 
 function Sidebar() {
   const { user } = useUser();
@@ -25,6 +33,12 @@ function Sidebar() {
         where('userId', '==', 'user.emailAddresses[0].toString()'))
     )
   );
+
+  useEffect(() => {
+    if (!data) return;
+
+    const grouped = data.docs.reduce()
+  }, [data]);
 
   const menuOptions = (
     <>
