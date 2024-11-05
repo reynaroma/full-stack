@@ -9,13 +9,22 @@ import {
 } from "@/components/ui/sheet"
 import { MenuIcon } from "lucide-react";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { useUser } from "@clerk/nextjs";
 
 // components
 import NewDocumentButton from "./NewDocumentButton";
+import { collectionGroup, query, where } from "firebase/firestore";
+import { db } from "@/firebase";
 
 function Sidebar() {
-
-  const [data, loading, error] = useCollection();
+  const { user } = useUser();
+  const [data, loading, error] = useCollection(
+    user && (
+      query(
+        collectionGroup(db, 'rooms'),
+        where('userId', '==', 'user.emailAddresses[0].toString()'))
+    )
+  );
 
   const menuOptions = (
     <>
