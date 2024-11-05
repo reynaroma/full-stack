@@ -15,29 +15,61 @@ import { useUser } from "@clerk/nextjs";
 import NewDocumentButton from "./NewDocumentButton";
 import { collectionGroup, doc, query, where } from "firebase/firestore";
 import { db } from "@/firebase";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface RoomDocument extends DocumentData {
   createdAt: string;
   role: "owner" | "editor";
   roomId: string;
   userId: string;
-}
+};
 
 function Sidebar() {
   const { user } = useUser();
+  const [groupedData, setGroupedData] = useState<{
+    owner: RoomDocument[];
+    editor: RoomDocument[];
+  }>({
+    owner: [],
+    editor: [],
+  });
+
   const [data, loading, error] = useCollection(
     user && (
       query(
         collectionGroup(db, 'rooms'),
-        where('userId', '==', 'user.emailAddresses[0].toString()'))
+        where('userId', '==', user.emailAddresses[0].toString()))
     )
   );
 
   useEffect(() => {
     if (!data) return;
 
-    const grouped = data.docs.reduce()
+    const grouped = data.docs.reduce<{
+      owner: RoomDocument[];
+      editor: RoomDocument[];
+    }>(
+      (acc, curr) => {
+        const roomData = curr.data() as RoomDocument;
+
+        if (roomData.role === 'owner') {
+          acc.owner.push({
+            id: curr.id,
+            ...roomData,
+          });
+        } else {
+          acc.editor.push({
+            id: curr.id,
+            ...roomData,
+          });
+        }
+        return acc;
+      }, {
+      owner: [],
+      editor: [],
+    }
+    )
+    setGroupedData(grouped);
   }, [data]);
 
   const menuOptions = (
