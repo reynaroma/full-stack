@@ -13,7 +13,7 @@ import { useUser } from "@clerk/nextjs";
 
 // components
 import NewDocumentButton from "./NewDocumentButton";
-import { collectionGroup, doc, query, where } from "firebase/firestore";
+import { collectionGroup, DocumentData, query, where } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useEffect, useState } from "react";
 
@@ -76,6 +76,17 @@ function Sidebar() {
     <>
       <NewDocumentButton />
       {/* Documents */}
+      {groupedData.owner.length === 0 ? (
+        <h2 className="text-gray-500 font-semibold text-sm">No documents found</h2>
+      ) : (
+        <>
+          <h2 className="text-gray-500 font-semibold text-sm">My Documents</h2>
+          {groupedData.owner.map((doc, index) => (
+            <p key={index}>{doc.roomId}</p>
+          ))}
+        </>
+
+      )}
       {/* List */}
 
       {/* Shared with me */}
