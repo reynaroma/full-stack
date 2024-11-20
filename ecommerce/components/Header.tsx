@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser, ClerkLoaded } from "@clerk/nextjs";
+import { useUser, ClerkLoaded, UserButton, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Form from 'next/form';
 import { TrolleyIcon, PackageIcon } from "@sanity/icons";
@@ -42,6 +42,18 @@ function Header() {
                 <PackageIcon className="w-6 h-6" />
                 <span>My Orders</span>
               </Link>
+            )}
+
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <UserButton />
+                <div className="hidden sm:block text-xs">
+                  <p className="text-gray-400">Welcome Back</p>
+                  <p className="font-bold">{user.fullName}!</p>
+                </div>
+              </div>
+            ) : (
+              <SignInButton mode="modal" />
             )}
           </ClerkLoaded>
         </div>
