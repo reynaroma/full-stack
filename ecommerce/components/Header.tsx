@@ -1,9 +1,9 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, ClerkLoaded } from "@clerk/nextjs";
 import Link from "next/link";
 import Form from 'next/form';
-import { TrolleyIcon } from "@sanity/icons";
+import { TrolleyIcon, PackageIcon } from "@sanity/icons";
 function Header() {
 
   const { user } = useUser(); // Get the user object from the hook if the user is logged in or null if not
@@ -35,6 +35,15 @@ function Header() {
             <span>My Basket</span>
           </Link>
           {/* User icon */}
+          <ClerkLoaded>
+            {user && (
+              <Link href="/orders"
+                className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <PackageIcon className="w-6 h-6" />
+                <span>My Orders</span>
+              </Link>
+            )}
+          </ClerkLoaded>
         </div>
       </div>
     </header>
