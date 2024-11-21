@@ -64,7 +64,7 @@ function Header() {
               <button
                 onClick={createClerkPassKey}
                 className="bg-white hover:bg-blue-700 hover:text-white animate-pulse text-blue-500 font-bold py-2 px-4 rounded border-blue-300 border"
-              >Create a passkey now</button>
+              >Create a passkey</button>
             )}
           </ClerkLoaded>
         </div>
