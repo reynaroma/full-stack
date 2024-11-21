@@ -9,7 +9,12 @@ function Header() {
 
   const { user } = useUser(); // Get the user object from the hook if the user is logged in or null if not
   const createClerkPassKey = async () => {
-
+    try {
+      const response = await user?.createPasskey();
+      console.log(response);
+    } catch (error) {
+      console.error("Error:", JSON.stringify(error, null, 2));
+    }
   };
 
   return (
