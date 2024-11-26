@@ -1,9 +1,15 @@
-import React from 'react'
+async function SearchPage({
+  searchParams,
+}: {
+  searchParams: {
+    query: string;
+  };
+}) {
 
-function SearchPage() {
+  const { query } = await searchParams;
   return (
     <div>
-      SearchPage
+      SearchPage for {query}
     </div>
   )
 }
