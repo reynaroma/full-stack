@@ -1,6 +1,5 @@
 import { BasketIcon } from "@sanity/icons";
-import { Rule } from "postcss";
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const orderType = defineType({
   name: "order",
@@ -49,5 +48,37 @@ export const orderType = defineType({
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "products",
+      title: "Products",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({
+              name: "product",
+              title: "Product Bought",
+              type: "reference",
+              to: [{ type: "product" }],
+            }),
+            defineField({
+              name: "quantity",
+              title: "Quantity Purchased",
+              type: "number",
+            }),
+          ],
+          preview: {
+            select: {
+              product: "product.name",
+              quantity: "quantity",
+              image: "product.image",
+              price: "product.price",
+              currency: "product.currency",
+            }
+          }
+        })
+      ]
+    })
   ],
 });
