@@ -1,8 +1,7 @@
 import { TrolleyIcon } from "@sanity/icons";
-import { Rule } from "postcss";
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export default {
+export const productType = defineType ({
   name: 'productType',
   title: 'Product type',
   type: 'document',
@@ -55,4 +54,18 @@ export default {
       validation: (Rule) => Rule.required().min(0),
     }),
   ],
-}
+  preview: {
+    select: {
+      title: "name",
+      media: "image",
+      price: "price",
+    },
+    prepare(select) {
+      return {
+        title: select.title,
+        subtitle: `$${select.price}`,
+        media: select.media,
+      };
+    },
+  },
+});
