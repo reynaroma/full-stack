@@ -75,10 +75,17 @@ export const orderType = defineType({
               image: "product.image",
               price: "product.price",
               currency: "product.currency",
-            }
-          }
-        })
-      ]
-    })
+            },
+            prepare(select) {
+              return {
+                title: `${select.product} x ${select.quantity}`,
+                subtitle: `${select.price * select.quantity}`,
+                media: select.image,
+              };
+            },
+          },
+        }),
+      ],
+    }),
   ],
 });
