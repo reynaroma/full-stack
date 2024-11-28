@@ -1,4 +1,5 @@
 import { BasketIcon } from "@sanity/icons";
+import { Rule } from "postcss";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const orderType = defineType({
@@ -118,6 +119,12 @@ export const orderType = defineType({
           { title: "Cancelled", value: "cancelled" },
         ],
       },
+    }),
+    defineField({
+      name: "orderDate",
+      title: "Order Date",
+      type: "datetime",
+      validation: (Rule) => Rule.required(),
     }),
   ],
 });
