@@ -141,7 +141,7 @@ export const orderType = defineType({
         title: `${select.name} (${orderIdSnippet})`,
         subtitle: `${select.amount} ${select.currency}, ${select.email}`,
         media: BasketIcon,
-      }
-    }
+      };
+    },
   },
 });
