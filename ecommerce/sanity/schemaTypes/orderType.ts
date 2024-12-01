@@ -1,5 +1,4 @@
 import { BasketIcon } from "@sanity/icons";
-import { Rule } from "postcss";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const orderType = defineType({
