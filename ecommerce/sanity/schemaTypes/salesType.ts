@@ -38,5 +38,12 @@ export const salesType = defineType({
       title: "Valid Until",
       type: "datetime",
     }),
+    defineField({
+      name: "isActive",
+      type: "boolean",
+      title: "Is Active",
+      description: "Toggle to activate/deactivate the sale",
+      initialValue: true,
+    }),
   ],
 });
