@@ -6,5 +6,37 @@ export const salesType = defineType({
   title: "Sales",
   type: "document",
   icon: TagIcon,
-  fields: [],
+  fields: [
+    defineField({
+      name: "title",
+      title: "Sale Title",
+      type: "string",
+    }),
+    defineField({
+      name: "description",
+      title: "Sale Description",
+      type: "text",
+    }),
+    defineField({
+      name: "discountAmount",
+      title: "Discount Amount",
+      type: "number",
+      description: "Amount off in percentage or fixed value",
+    }),
+    defineField({
+      name: "couponCode",
+      type: "string",
+      title: "Coupon Code",
+    }),
+    defineField({
+      name: "validFrom",
+      title: "Valid From",
+      type: "datetime",
+    }),
+    defineField({
+      name: "validUntil",
+      title: "Valid Until",
+      type: "datetime",
+    }),
+  ],
 });
