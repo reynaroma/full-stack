@@ -7,15 +7,6 @@ export const getActiveSaleByCouponCode = async (couponCode: CouponCode) => {
       _type == "sale"
       && isActive == true
       && couponCode == $couponCode
-    ] | order(validFrom desc) {
-      _id,
-      title,
-      description,
-      discountAmount,
-      couponCode,
-      validFrom,
-      validUntil,
-      isActive,
-    }[0]
+    ] | order(validFrom desc) [0]
     `);
 };
