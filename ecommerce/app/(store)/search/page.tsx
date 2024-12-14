@@ -1,3 +1,5 @@
+import { searchProductsByName } from "@/sanity/lib/products/searchProductsByName";
+
 async function SearchPage({
   searchParams,
 }: {
@@ -7,6 +9,7 @@ async function SearchPage({
 }) {
 
   const { query } = await searchParams;
+  const products = await searchProductsByName(query);
   return (
     <div>
       SearchPage for {query}
