@@ -1,6 +1,4 @@
-import React from 'react'
-
-function ProductPage() {
+async function ProductPage({ params }: { params: { slug: string } }) {
   return (
     <div>
       ProductPage
